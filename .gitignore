@@ -1,0 +1,56 @@
+# --- 1. Python & Virtual Environments ---
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+ENV/
+.venv/
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# --- 2. Environment Variables & Secrets ---
+.env
+.env.*
+!.env.example
+
+# --- 3. Temp Uploads & Test Media ---
+dermasense_ai/backend/uploads/*
+!dermasense_ai/backend/uploads/.gitkeep
+test_skin.jpg
+*.log
+flutter_*.log
+
+# --- 4. Flutter & Dart ---
+.dart_tool/
+.packages
+.pub-cache/
+.pub/
+dermasense_ai/frontend/build/
+dermasense_ai/frontend/.flutter-plugins
+dermasense_ai/frontend/.flutter-plugins-dependencies
+dermasense_ai/frontend/.metadata
+
+# --- 5. IDE & Operating System ---
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
