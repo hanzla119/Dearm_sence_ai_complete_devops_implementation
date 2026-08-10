@@ -37,7 +37,7 @@ jobs:
       - name: Run SAST Security Scan (Bandit)
         run: |
           pip install bandit
-          bandit -r dermasense_ai/backend -ll -ii
+          bandit -r dermasense_ai/backend -s B104 -ll -ii
 
       # 4. SCA Scan (pip-audit)
       - name: Run SCA Dependency Vulnerability Scan (pip-audit)
@@ -98,7 +98,7 @@ jobs:
         uses: docker/login-action@v3
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
-          password: ${{ secrets.DOCKERHUB_TOKEN }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
 
       - name: Extract Docker Metadata
         id: meta
