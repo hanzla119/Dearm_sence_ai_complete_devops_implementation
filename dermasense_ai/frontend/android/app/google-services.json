@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "372117631486",
+    "project_id": "dermasenseai-2c6f2",
+    "storage_bucket": "dermasenseai-2c6f2.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:372117631486:android:a454dbe5061bdf1f2410af",
+        "android_client_info": {
+          "package_name": "com.example.frontend"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCv6ipB95Zk35kMBsnxOJHGFsUa5ObhG2w"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,0 +1,137 @@
+{
+    "annotations": {
+        "list": []
+    },
+    "editable": true,
+    "fiscalYearStartMonth": 0,
+    "graphTooltip": 1,
+    "id": null,
+    "links": [],
+    "liveNow": false,
+    "panels": [
+        {
+            "collapsed": false,
+            "gridPos": {
+                "h": 1,
+                "w": 24,
+                "x": 0,
+                "y": 0
+            },
+            "id": 100,
+            "title": "Application Health & Traffic",
+            "type": "row"
+        },
+        {
+            "datasource": {
+                "type": "prometheus",
+                "uid": "Prometheus"
+            },
+            "fieldConfig": {
+                "defaults": {
+                    "color": {
+                        "mode": "palette-classic"
+                    },
+                    "unit": "reqps"
+                }
+            },
+            "gridPos": {
+                "h": 8,
+                "w": 8,
+                "x": 0,
+                "y": 1
+            },
+            "id": 1,
+            "title": "HTTP Request Rate (RPS)",
+            "type": "timeseries",
+            "targets": [
+                {
+                    "expr": "sum(rate(dermasense_http_requests_total[1m])) by (endpoint, status)",
+                    "legendFormat": "{{endpoint}} ({{status}})"
+                }
+            ]
+        },
+        {
+            "datasource": {
+                "type": "prometheus",
+                "uid": "Prometheus"
+            },
+            "fieldConfig": {
+                "defaults": {
+                    "color": {
+                        "mode": "palette-classic"
+                    },
+                    "unit": "s"
+                }
+            },
+            "gridPos": {
+                "h": 8,
+                "w": 8,
+                "x": 8,
+                "y": 1
+            },
+            "id": 2,
+            "title": "YOLOv8 AI Inference Latency (P95 & P50)",
+            "type": "timeseries",
+            "targets": [
+                {
+                    "expr": "histogram_quantile(0.95, sum(rate(dermasense_inference_latency_seconds_bucket[1m])) by (le))",
+                    "legendFormat": "P95 Latency"
+                },
+                {
+                    "expr": "histogram_quantile(0.50, sum(rate(dermasense_inference_latency_seconds_bucket[1m])) by (le))",
+                    "legendFormat": "P50 Latency"
+                }
+            ]
+        },
+        {
+            "datasource": {
+                "type": "prometheus",
+                "uid": "Prometheus"
+            },
+            "fieldConfig": {
+                "defaults": {
+                    "color": {
+                        "mode": "palette-classic"
+                    }
+                }
+            },
+            "gridPos": {
+                "h": 8,
+                "w": 8,
+                "x": 16,
+                "y": 1
+            },
+            "id": 3,
+            "title": "Scans by Acne Severity",
+            "type": "piechart",
+            "targets": [
+                {
+                    "expr": "sum(dermasense_inference_requests_total) by (severity)",
+                    "legendFormat": "{{severity}}"
+                }
+            ]
+        }
+    ],
+    "refresh": "5s",
+    "schemaVersion": 39,
+    "tags": [
+        "dermasense",
+        "ai",
+        "devops"
+    ],
+    "time": {
+        "from": "now-15m",
+        "to": "now"
+    },
+    "timepicker": {
+        "refresh_intervals": [
+            "5s",
+            "10s",
+            "30s",
+            "1m"
+        ]
+    },
+    "timezone": "browser",
+    "title": "DermaSense AI - Observability & Metrics",
+    "version": 1
+}
