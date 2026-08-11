@@ -54,3 +54,11 @@ dermasense_ai/frontend/.metadata
 *~
 .DS_Store
 Thumbs.db
+
+# --- 6. Terraform State & Secrets ---
+**/.terraform/
+*.tfstate
+*.tfstate.*
+*.tfvars
+*.tfvars.json
+.terraform.lock.hcl

@@ -1,0 +1,60 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: dermasense-frontend
+  namespace: dermasense
+  labels:
+    app: dermasense-frontend
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: dermasense-frontend
+  template:
+    metadata:
+      labels:
+        app: dermasense-frontend
+    spec:
+      containers:
+        - name: frontend
+          image: docker.io/hanzla119/dermasense-frontend:latest
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 80
+              name: http
+          resources:
+            requests:
+              cpu: "100m"
+              memory: "128Mi"
+            limits:
+              cpu: "500m"
+              memory: "512Mi"
+          livenessProbe:
+            httpGet:
+              path: /healthz
+              port: 80
+            initialDelaySeconds: 10
+            periodSeconds: 10
+          readinessProbe:
+            httpGet:
+              path: /healthz
+              port: 80
+            initialDelaySeconds: 5
+            periodSeconds: 5
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: dermasense-frontend-svc
+  namespace: dermasense
+  labels:
+    app: dermasense-frontend
+spec:
+  type: ClusterIP
+  ports:
+    - port: 80
+      targetPort: 80
+      protocol: TCP
+      name: http
+  selector:
+    app: dermasense-frontend
